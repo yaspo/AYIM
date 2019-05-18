@@ -2,7 +2,7 @@
   "name": "ayim",
   "version": "1.0.0",
   "description": "The website for A Year In Mapping",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "dev": "nuxt"
   },
