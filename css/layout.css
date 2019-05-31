@@ -1,0 +1,206 @@
+@import url("./font.css");
+
+body {
+    margin: 0;
+    margin-top: 1.6%;
+    background: url(/img/background.png);
+    background-color: #141414;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'ClearSans';
+    font-size: 24px;
+    color: white;
+}
+
+img {
+    max-width: 100%;
+}
+
+.template-wrap {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "nav nuxt nuxt"
+        "footer footer footer";
+}
+
+.header {
+    background-color: #262626;
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.header-left {
+    overflow: hidden;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.ayim {
+    left: -4.7vw;
+    position: relative;
+    height: calc(8.38vw - 7px);
+}
+
+.countdown {
+    font-weight: lighter;
+    text-align: right;
+    align-self: center;
+    flex-direction: column;
+    padding: 0 26px;
+    font-size: calc(1vw + 3.25px);
+    white-space: nowrap;
+}
+
+.header-right {
+    background-color: #313131;
+    border-radius: 73.6px 0 0 73.6px;
+    transition: background 0.25s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 21.9%;
+    overflow: hidden;
+}
+
+.header-right img {
+    max-width: 67%;
+}
+
+.headerHover {
+    background: white;
+    transition: background 0.25s ease;
+}
+
+.mcalogoHover {
+    filter: brightness(0);
+    transition: filter 0.25s;
+}
+
+.mcalogo {
+    width: 2vw;
+}
+
+.nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    padding: 0 49px;
+    width: fit-content;
+}
+
+.nav-mode {
+    border-radius: 100vw;
+    display: flex;
+    align-items: center;
+    margin: calc(1.5vh + 14.7px) 0 0;
+    text-decoration: none;
+    color: inherit;
+    width: calc(3.5vw + 31.8px);
+    height: calc(3.5vw + 31.8px);
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.nav-mode:hover {
+    width: calc(9vw + 67px);
+}
+
+.nav-mode img {
+    padding: calc(0.4345vw + 7.65px);
+    width: calc(2.631vw + 16.5px);
+}
+
+.nav-mode div {
+    padding-right: 30px;
+    white-space: nowrap;
+    font-size: calc(1vw + 5px);
+}
+
+.standard {
+    background-color: #fb2475;
+}
+
+.taiko {
+    background-color: #ff890a;
+}
+
+.fruits {
+    background-color: #0abdff;
+}
+
+.mania {
+    background-color: #48f326;
+}
+
+.storyboard {
+    background-color: #555555;
+}
+
+.nuxt {
+    grid-area: nuxt;
+}
+
+.footer {
+    background-color: #2a2a2a;
+    grid-area: footer;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: calc(0.9vw + 5px);
+    color: #808080;
+    font-weight: lighter;
+    width: 100%;
+}
+
+.footer-left {
+    padding: 24px 23px;
+    display: flex;
+}
+
+.footer-left div, .footer-left a {
+    display: flex;
+    align-items: center;
+}
+
+.footer-left div, .footer-left img {
+    padding: 0 9.5px;
+}
+
+.corsace {
+    width: calc(1.925vw + 12px);
+}
+
+.corsaceText {
+    width: calc(4.76vw + 12px);
+}
+
+.extLinks img {
+    width: 2vw;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
+@media only screen and (min-width: 1920px) { /* To not break stuff at 2K 4K etc */
+    body {
+        background-size: cover;
+    }
+    .header-left {
+        display: initial;
+        align-items: unset;
+    }
+    .ayim {
+        height: 100%;
+        left: -90px;
+    }
+}
