@@ -12,7 +12,9 @@ const config: NuxtConfiguration = {
     },
     css: [
         '~/css/layout.css',
-    ]
+        '~/css/index.css',
+    ],
+    plugins: ['plugins/i18n.ts'],
 }
 
 export default config

@@ -1,29 +1,18 @@
 <template>
     <div @click="active = !active" class="languageSelection">
         <div v-if="active" class="dropdown">
-            <div class="langSelDropdown">
-                <img src="https://osu.ppy.sh/images/flags/GB.png">
-                EN
-            </div>
-            <div class="langSelDropdown">
-                <img src="https://osu.ppy.sh/images/flags/GB.png">
-                EN
-            </div>
-            <div class="langSelDropdown">
-                <img src="https://osu.ppy.sh/images/flags/GB.png">
-                EN
-            </div>
-            <div class="langSelDropdown">
-                <img src="https://osu.ppy.sh/images/flags/GB.png">
-                EN
-            </div>
-            <div class="langSelDropdown">
-                <img src="https://osu.ppy.sh/images/flags/GB.png">
-                EN
+
+            <div 
+            class="langSelDropdown"
+            v-for="lang in langs"
+            :key="lang"
+            @click="$i18n.locale = lang; setLanguage(lang);">
+                <img :src="$i18n.messages[lang].flag">
+                {{ lang.toUpperCase() }}
             </div>
         </div>
-        <img src="https://osu.ppy.sh/images/flags/GB.png">
-        EN
+        <img :src="$i18n.messages[$i18n.locale].flag">
+        {{ $i18n.locale.toUpperCase() }}
     </div>
 </template>
 
@@ -31,9 +20,21 @@
 export default{
     data () {
         return {
-            active: false,
-            lang: ""
+            active: false
         }
+    },
+    methods: {
+        setLanguage: (lang) => {
+            localStorage.setItem('lang', lang);
+        },
+    },
+    created() {
+        console.log(this.$i18n.locale.toUpperCase())
+    },
+    computed: {
+        langs () {
+            return Object.keys(this.$i18n.messages)
+        },
     },
 }
 </script>
