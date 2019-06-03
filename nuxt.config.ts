@@ -2,12 +2,10 @@ import NuxtConfiguration from "@nuxt/config"
 
 const config: NuxtConfiguration = {
     head: {
-        link: [
-            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Ubuntu' },
-        ],
         meta: [
             { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { name: 'keywords', content: 'osu, osu!, Corsace, map, mapping, rhythm game, charting, charts, beatmaps, beatmapping, beatmap' },
         ]
     },
     css: [
