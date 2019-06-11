@@ -3,7 +3,7 @@
 body {
     margin: 0;
     margin-top: 1.6%;
-    background: url(../CorsaceAssets/img/background.png);
+    background: url(../CorsaceAssets/img/ayim-mca/background.png);
     background-color: #141414;
     background-repeat: no-repeat;
     background-position: center;
@@ -50,11 +50,14 @@ img {
     font-weight: lighter;
     text-align: right;
     align-self: center;
+    display: flex;
+    justify-content: right;
     flex-direction: column;
     padding: 0 26px;
     font-size: calc(1vw + 3.25px);
     white-space: nowrap;
     margin-left: auto;
+    line-height: 200%;
 }
 
 .header-right {
@@ -139,6 +142,7 @@ img {
     display: flex;
     align-items: center;
     text-align: right;
+    padding-right: 3px;
 }
 
 @media only screen and (min-width: 1920px) { /* To not break stuff at 2K 4K etc */
