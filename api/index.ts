@@ -1,9 +1,7 @@
 import "reflect-metadata";
-import { Config } from "../../config"
-import { App } from "../../commonRoutes"
+import { App } from "../../CorsaceServer"
 
-const config = new Config()
-const app = new App(config.ayim.publicURL, config.ayim.keys)
+const app = new App("ayim")
 
 export default {
     path: "/api",
