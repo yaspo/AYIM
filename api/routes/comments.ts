@@ -3,8 +3,9 @@ import { isLoggedIn } from "../../../CorsaceServer/middleware";
 import { User } from "../../../CorsaceModels/user";
 import { UserComment } from "../../../CorsaceModels/MCA_AYIM/userComments";
 import { ModeDivision, ModeDivisionType } from "../../../CorsaceModels/MCA_AYIM/modeDivision";
+import { ParameterizedContext, Next } from "koa";
 
-async function canComment(ctx, next): Promise<any> {
+async function canComment(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>>, next: Next): Promise<any> {
     if (!ctx.state.user.canComment) {
         return ctx.body = {
             error: "You cannot comment",
@@ -14,7 +15,7 @@ async function canComment(ctx, next): Promise<any> {
     await next();
 }
 
-async function isOwnerComment(ctx, next): Promise<any> {
+async function isOwnerComment(ctx: ParameterizedContext<any, Router.IRouterParamContext<any, {}>>, next: Next): Promise<any> {
     const comment = await UserComment.findOneOrFail(ctx.params.id);
 
     if (comment.commenterID !== ctx.state.user.ID) {
@@ -126,7 +127,7 @@ commentsRouter.post("/create", isLoggedIn, canComment, async (ctx) => {
     }
 
     const comment = new UserComment();
-    comment.mode = mode;
+    comment.mode = mode as ModeDivision;
     comment.comment = newComment;
     comment.commenter = ctx.state.user;
     comment.target = target;
