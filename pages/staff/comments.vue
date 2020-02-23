@@ -35,19 +35,19 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Axios from 'axios';
+import Vue from "vue";
+import Axios from "axios";
 
 export default Vue.extend({
     data () {
         return {
             comments: [],
             user: null,
-            info: '',
-        }
+            info: "",
+        };
     },
     async mounted () {
-        const res = await Axios.get('/api/staff/comments/');
+        const res = await Axios.get("/api/staff/comments/");
 
         if (res.data && !res.data.error) {
             this.comments = res.data.comments;
@@ -56,7 +56,7 @@ export default Vue.extend({
     },
     methods: {
         async update (id) {
-            this.info = '';
+            this.info = "";
             const i = this.comments.findIndex(c => c.ID === id);
             const res = await Axios.post(`/api/staff/comments/${id}/review`, {
                 comment: this.comments[i].comment,
@@ -66,11 +66,11 @@ export default Vue.extend({
             if (res.data.error) {
                 this.info = res.data.error;
             } else if (res.data) {
-                this.info = 'ok';
+                this.info = "ok";
             }
         },
         async remove (id) {
-            this.info = '';
+            this.info = "";
             const res = await Axios.post(`/api/staff/comments/${id}/remove`);
             
             if (res.data.error) {
@@ -84,7 +84,7 @@ export default Vue.extend({
             }
         },
         async ban (id) {
-            this.info = '';
+            this.info = "";
             const res = await Axios.post(`/api/staff/users/${id}/ban`);
             
             if (res.data.error) {
@@ -95,5 +95,5 @@ export default Vue.extend({
             }
         },
     },
-})
+});
 </script>

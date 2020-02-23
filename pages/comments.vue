@@ -55,8 +55,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Axios from 'axios';
+import Vue from "vue";
+import Axios from "axios";
 
 export default Vue.extend({
     data () {
@@ -64,14 +64,14 @@ export default Vue.extend({
             comments: [],
             modes: [],
             user: null,
-            newTarget: '',
-            newComment: '',
+            newTarget: "",
+            newComment: "",
             newMode: 1,
-            info: '',
-        }
+            info: "",
+        };
     },
     async mounted () {
-        const res = await Axios.get('/api/comments/');
+        const res = await Axios.get("/api/comments/");
 
         if (res.data.error) {
             this.info = res.data.error;
@@ -83,8 +83,8 @@ export default Vue.extend({
     },
     methods: {
         async create () {
-            this.info = '';
-            const res = await Axios.post('/api/comments/create', {
+            this.info = "";
+            const res = await Axios.post("/api/comments/create", {
                 target: this.newTarget,
                 comment: this.newComment,
                 mode: this.newMode,
@@ -97,7 +97,7 @@ export default Vue.extend({
             }
         },
         async update (id) {
-            this.info = '';
+            this.info = "";
             const i = this.comments.findIndex(c => c.ID === id);
             const res = await Axios.post(`/api/comments/${id}/update`, {
                 comment: this.comments[i].comment,
@@ -106,11 +106,11 @@ export default Vue.extend({
             if (res.data.error) {
                 this.info = res.data.error;
             } else if (res.data) {
-                this.info = 'ok';
+                this.info = "ok";
             }
         },
         async remove (id) {
-            this.info = '';
+            this.info = "";
             const res = await Axios.post(`/api/comments/${id}/remove`);
             
             if (res.data.error) {
@@ -124,5 +124,5 @@ export default Vue.extend({
             }
         },
     },
-})
+});
 </script>
