@@ -47,7 +47,7 @@ export default Vue.extend({
         };
     },
     async mounted () {
-        const res = await Axios.get("/api/staff/comments/");
+        const res = await Axios.get("/api/staff/comments/2019");
 
         if (res.data && !res.data.error) {
             this.comments = res.data.comments;

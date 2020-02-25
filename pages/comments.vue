@@ -88,6 +88,7 @@ export default Vue.extend({
                 target: this.newTarget,
                 comment: this.newComment,
                 mode: this.newMode,
+                year: 2019,
             });
             
             if (res.data.error) {

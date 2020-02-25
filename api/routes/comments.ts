@@ -51,6 +51,7 @@ commentsRouter.get("/", isLoggedIn, canComment, async (ctx) => {
 commentsRouter.post("/create", isLoggedIn, canComment, async (ctx) => {
     const newComment: string = ctx.request.body.comment.trim();
     const modeInput: string = ctx.request.body.mode;
+    const year: number = ctx.request.body.year;
     
     if (!newComment || !modeInput) {
         return ctx.body = {
@@ -85,6 +86,7 @@ commentsRouter.post("/create", isLoggedIn, canComment, async (ctx) => {
 
     const hasCommented = await UserComment.findOne({
         commenter: ctx.state.user,
+        year,
         target,
         mode,
     });

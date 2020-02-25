@@ -4,9 +4,12 @@ import { UserComment } from "../../../../CorsaceModels/MCA_AYIM/userComments";
 
 const commentsReviewRouter = new Router();
 
-commentsReviewRouter.get("/", isLoggedIn, isLoggedInDiscord, hasRole("mca", "staff"), async (ctx) => {
+commentsReviewRouter.get("/:year", isLoggedIn, isLoggedInDiscord, hasRole("mca", "staff"), async (ctx) => {
     const comments = await UserComment.find({
         relations: ["target", "reviewer", "commenter"],
+        where: {
+            year: ctx.params.year,
+        },
     });
 
     ctx.body = {
