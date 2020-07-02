@@ -102,23 +102,23 @@ commentsRouter.post("/create", isLoggedIn, canComment, async (ctx) => {
 
     switch (modeID) {
         case ModeDivisionType.Standard:
-            isModeEligible = target.mca.some(e => e.standard && e.year == currentYear);
+            isModeEligible = target.mcaEligibility.some(e => e.standard && e.year == currentYear);
             break;
 
         case ModeDivisionType.Mania:
-            isModeEligible = target.mca.some(e => e.mania && e.year == currentYear);
+            isModeEligible = target.mcaEligibility.some(e => e.mania && e.year == currentYear);
             break;
             
         case ModeDivisionType.Taiko:
-            isModeEligible = target.mca.some(e => e.taiko && e.year == currentYear);
+            isModeEligible = target.mcaEligibility.some(e => e.taiko && e.year == currentYear);
             break;
             
         case ModeDivisionType.Fruits:
-            isModeEligible = target.mca.some(e => e.fruits && e.year == currentYear);
+            isModeEligible = target.mcaEligibility.some(e => e.fruits && e.year == currentYear);
             break;
 
         case ModeDivisionType.Storyboard:
-            isModeEligible = target.mca.some(e => e.storyboard && e.year == currentYear);
+            isModeEligible = target.mcaEligibility.some(e => e.storyboard && e.year == currentYear);
             break;
     }
 
