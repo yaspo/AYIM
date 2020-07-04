@@ -18,4 +18,14 @@ usersRouter.post("/:id/ban", isLoggedIn, isLoggedInDiscord, hasRole("corsace", "
     };
 });
 
+usersRouter.post("/:id/unban", isLoggedIn, isLoggedInDiscord, hasRole("corsace", "headStaff"), async (ctx) => {
+    const user = await User.findOneOrFail(ctx.params.id);
+    user.canComment = true;
+    await user.save();
+
+    ctx.body = {
+        success: "ok",
+    };
+});
+
 export default usersRouter;
