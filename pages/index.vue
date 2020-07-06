@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <div class="ayim-bg"></div>
         <div class="left-side"></div>
         <div class="right-side">
            
@@ -65,11 +66,26 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
         margin-bottom: 0px;
     }
 
+    overflow: hidden;
+
+}
+
+.ayim-bg {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: -6;
+
+    height: 100%;
+    width: 100%;
+    padding-bottom: 9vh;
+
     background-image: url("../../CorsaceAssets/img/ayim-mca/site/ayim bg.png");
     background-size: auto 80%;
     background-repeat: no-repeat;
+    background-position: center left;
 
-
+	animation: fade-in 0.7s ease-in both;
 }
 
 .right-side {
@@ -87,6 +103,17 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
         flex: 0 0 60%;
         max-width: 60%;
     }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    bottom: 0px;
+  }
+  100% {
+    opacity: 1;
+    bottom: 10px;
+  }
 }
 
 </style>
