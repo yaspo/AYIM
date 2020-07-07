@@ -1,13 +1,12 @@
 <template>
     <div class="home">
-        <div class="ayim-bg"></div>
-        <div class="left-side"></div>
+        <div class="ayim-bg" />
+        <div class="left-side" />
         <div class="right-side">
-           
             <modeSwitcher 
                 :page="'index'"
             />
-         </div>
+        </div>
     </div>
 </template>
 

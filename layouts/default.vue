@@ -1,5 +1,8 @@
 <template>
-    <div class="layout" v-if="loaded">
+    <div
+        v-if="loaded"
+        class="layout"
+    >
         <headerComponent 
             :user="user"
         />
