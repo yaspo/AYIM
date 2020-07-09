@@ -1,7 +1,8 @@
 <template>
     <div class="mode-wrapper">
         <div class="mode-title">
-            {{ selectedMode }}
+            {{ selectedMode }} 
+            <span v-if="page!=='index'"> | ayim</span>
         </div>
 
         <div
@@ -12,11 +13,16 @@
                 v-if="page==='index'"
                 :selected-mode="selectedMode"
             />
-            <stage 
-                v-if="page==='stage'"
+            <stats 
+                v-if="page==='stats'"
                 :selected-mode="selectedMode"
             />
-            <div
+            <test 
+                v-if="page==='test'"
+                :selected-mode="selectedMode"
+            />
+        </div>
+        <div
                 class="mode-selection" 
                 :class="`mode-selection--${selectedMode}`"
             >
@@ -28,7 +34,6 @@
                     @click="setMode(mode)"
                 />
             </div>
-        </div>
     </div>
 </template>
 
@@ -37,10 +42,14 @@ import axios from "axios";
 import Vue from "vue";
 
 import index from "./index.vue";
+import stats from './stats.vue';
+import test from './test.vue';
 
 export default Vue.extend({
     components: {
         "index": index,
+        "stats": stats,
+        "test": test,
     },
     props: {
         page: {
@@ -87,11 +96,39 @@ export default Vue.extend({
 <style lang="scss">
 $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
 
+.mode-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.mode-title {
+    font-family: 'Lexend Peta';
+    font-size: 2rem;
+    text-shadow: 0 0 4px white;
+    margin: 25px 25px 10px auto;
+}
+
+.mode-container {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
+    padding-bottom: 0;
+}
+
+.mode-selection {
+    display: flex;
+    align-items: center;
+    padding: 10px 25px;
+}
+
+
 @mixin mode-container {
     @each $mode in $modes {
         &--#{$mode} {
             border-top: 3px solid var(--#{$mode});
-
             &::before {
                 border-left: 3px solid var(--#{$mode});
             }
@@ -99,24 +136,6 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
     }
 }
 
-%spaced-container {
-    margin-bottom: 40px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.mode-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding-left: 2%;
-}
-
-.mode-title {
-    font-family: 'Lexend Peta';
-    font-size: 2rem;
-    text-shadow: 0 0 4px white;
-    margin: 5% 25px 10px auto;
-}
 
 .mode-container {
     @include mode-container;
@@ -124,25 +143,22 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
     transition: all 0.25s ease-out;
 
     border-top-left-radius: 25px;
-    padding: 25px;
-    position: relative;
-
+ 
     &::before {
         content: "";
+        display: block;
         position: absolute;
-        top: -2px;
-        left: -3px;
-        border-bottom-left-radius: 25px;
-        border-top-left-radius: 25px;
+        left: 0px;
+        top: 75px;
         width: 100%;
-        height: calc(100% - 45px);
+        //full height - mode-title height - mode-selection::before bottom position
+        height: calc(100% - 75px - 31px);
+        border-top-left-radius: 25px;
+        border-bottom-left-radius: 25px;
         z-index: -1;
-
-        transition: all 0.25s ease-out;
     }
 
     &__general {
-        @extend %spaced-container;
         flex-wrap: wrap;
 
         @media (min-width: 1200px) {
@@ -156,19 +172,6 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
         @media (min-width: 1200px) {
             flex-wrap: nowrap;
         }
-    }
-}
-
-%half-box {
-    border-radius: 15px; 
-    background-color: rgba(0, 0, 0, 0.7); 
-    padding: 5px 20px;
-    display: flex;
-    flex: 1 1 100%;
-    
-    @media (min-width: 1200px) {
-        flex-wrap: nowrap;
-        flex: 1 1 50%;
     }
 }
 
@@ -189,7 +192,7 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
             &::before {
                 border-bottom: 3px solid var(--#{$mode});
                 // - icon size + border margin - icon margin
-                width: calc(100% - 45px * #{$i} + 28px - 15px * #{$i - 1});
+                 width: calc(100%);
             }
         }
 
@@ -210,10 +213,6 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
 }
 
 .mode-selection {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
     @include mode-selection-border;
 
     transition: all 0.25s ease-out;
@@ -226,6 +225,7 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
         background-size: cover;
         border-radius: 100%;
         margin-left: 15px;
+        z-index: 0;
 
         transition: all 0.25s ease-out;
     }
@@ -233,12 +233,12 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
     &::before {
         content: "";
         position: absolute;
-        bottom: 50%;
-        left: -28px;
-        z-index: -1;
-        border-bottom-left-radius: 25px;
+        width: 100%;
         height: 100%;
-
+        z-index: -1;
+        right: 0px;
+        bottom: 31px;
+        border-bottom-left-radius: 25px;
         transition: all 0.25s ease-out;
     }
 
