@@ -97,11 +97,13 @@ export default Vue.extend({
 $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
 
 .mode-wrapper {
+    position: relative;
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    overflow: hidden;
 }
 
 .mode-title {
@@ -114,8 +116,8 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
 .mode-container {
     width: 100%;
     height: 100%;
-    padding: 25px;
-    padding-bottom: 0;
+    padding: 0 25px;
+    overflow: hidden;
 }
 
 .mode-selection {
@@ -143,7 +145,6 @@ $modes: "storyboard", "mania" , "fruits", "taiko", "standard";
     transition: all 0.25s ease-out;
 
     border-top-left-radius: 25px;
- 
     &::before {
         content: "";
         display: block;
