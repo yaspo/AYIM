@@ -64,6 +64,7 @@ export default {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
+    padding-bottom: 9vh;
 }
 
 </style>
